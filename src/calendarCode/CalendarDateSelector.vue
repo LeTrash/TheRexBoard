@@ -44,3 +44,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.calendar-date-selector {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  color: var(--grey-800);
+}
+
+.calendar-date-selector > * {
+  cursor: pointer;
+  user-select: none;
+}
+</style>

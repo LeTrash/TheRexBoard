@@ -21,3 +21,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.calendar-date-indicator {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--grey-00);
+}
+</style>
