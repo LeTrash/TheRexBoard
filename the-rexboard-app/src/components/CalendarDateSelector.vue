@@ -2,9 +2,9 @@
 
 <template>
   <div class="calendar-date-selector">
-    <span @click="selectPrevious"><</span>
+    <span @click="selectPrevious">&lt;</span>
     <span @click="selectCurrent">Today</span>
-    <span @click="selectNext">></span>
+    <span @click="selectNext">&gt;</span>
   </div>
 </template>
 

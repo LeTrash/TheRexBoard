@@ -48,7 +48,7 @@ dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 
 export default {
-  name: "Calendar",
+  name: "CalendarDynamic",
 
   components: {
     CalendarMonthDayItem,
