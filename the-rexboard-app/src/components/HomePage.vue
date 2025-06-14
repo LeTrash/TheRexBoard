@@ -11,12 +11,12 @@
       <h1>BYU-I Student Guide</h1>
       <div id="bruh">
         <nav>
-          <a href="./index-stg.html">Home</a>
+          <!-- <a href="./index-stg.html">Home</a>
           <a href="./academics.html">Academics</a>
           <a href="./activites.html">Activites</a>
           <a href="./finiancial.html">Finanical</a>
           <a href="./health.html">Health</a>
-          <a href="./App.vue">Calendar</a>
+          <a href="./App.vue">Calendar</a> -->
         </nav>
       </div>
     </header>
