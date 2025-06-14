@@ -39,7 +39,7 @@
             src="./images/guy devo notes edit.jpg"
             alt="AcademicsIMG"
           />
-          <a class="Academics" href="./academics.html">Academics</a>
+          <a class="Academics" href="./pages/academics.vue">Academics</a>
         </section>
         <section id="hea">
           <img
@@ -47,7 +47,7 @@
             src="./images/run and not be weary 3 edited.jpg"
             alt="HealthIMG"
           />
-          <a class="Health" href="./health.html">Health</a>
+          <a class="Health" href="./pages/health.vue">Health</a>
         </section>
         <section id="act">
           <img
@@ -55,18 +55,18 @@
             src="./images/going to church.JPG"
             alt="ActivitesIMG"
           />
-          <a class="Activites" href="./activites.html">Activites</a>
+          <a class="Activites" href="./pages/activities.vue">Activites</a>
         </section>
         <section id="fin">
           <img class="sahowimg" src="./images/Pertty.jpg" alt="FinancialIMG" />
-          <a class="Finanical" href="./finiancial.html">Finanical</a>
+          <a class="Finanical" href="./pages/fin.vue">Finanical</a>
         </section>
-        <section id="tips">
+        <!-- <section id="tips">
           <p>
             Click the button below for a few fun tips to get through college!
           </p>
           <a class="Tips" href="./tips.html">Tips</a>
-        </section>
+        </section> -->
       </div>
 
       <!-- <section id="search">
@@ -98,7 +98,7 @@
       <p>Student Guide &copy; 2022 - Jessica Clark</p>
       <p>Images courtesy of Lexie Stout and Jessica Clark</p>
       <p><a href="./site-plan.html">Site Plan</a></p>
-      <p><a href="./styles/contactus.html">Contact Us</a></p>
+      <p><a href="./pages/contactus.vue">Contact Us</a></p>
       <div class="social">
         <a href="https://byui.edu" target="_blank">
           <img src="./images/BYU-Ilogo.jpg" alt="BYU-I icon" />
