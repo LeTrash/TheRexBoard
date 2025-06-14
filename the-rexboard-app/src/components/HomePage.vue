@@ -11,12 +11,11 @@
       <h1>BYU-I Student Guide</h1>
       <div id="bruh">
         <nav>
-          <!-- <a href="./index-stg.html">Home</a>
-          <a href="./academics.html">Academics</a>
-          <a href="./activites.html">Activites</a>
-          <a href="./finiancial.html">Finanical</a>
-          <a href="./health.html">Health</a>
-          <a href="./App.vue">Calendar</a> -->
+          <router-link to="/pages/academics">Academics</router-link>
+          <router-link to="/pages/Activities">Activities</router-link>
+          <router-link to="/pages/health">Health</router-link>
+          <router-link to="/pages/fin">Finacial</router-link>
+          <router-link to="/Calendar">Calendar</router-link>
         </nav>
       </div>
     </header>
@@ -50,11 +49,11 @@
           <a class="Health" href="./pages/health.vue">Health</a>
         </section>
         <section id="act">
-          <img
+          <!-- <img
             class="sahowimg"
-            src="./images/going to church.JPG"
+            src="@/components/images/going to church.JPG"
             alt="ActivitesIMG"
-          />
+          /> -->
           <a class="Activites" href="./pages/activities.vue">Activites</a>
         </section>
         <section id="fin">
@@ -117,6 +116,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 @import "./assets/stylehome.css";
-</style>
+</style> -->

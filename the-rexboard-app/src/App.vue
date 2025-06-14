@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <CalendarDynamic />
+    <router-view />
   </div>
 </template>
 
 <script>
-import CalendarDynamic from "./components/Calendar.vue";
+// import CalendarDynamic from "./components/Calendar.vue";
 
 export default {
   name: "App",
-
-  components: {
-    CalendarDynamic,
-  },
 };
 </script>
 
