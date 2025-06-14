@@ -29,3 +29,11 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Vite Server
+
+```
+npm run dev
+
+http://localhost:5173
+```
