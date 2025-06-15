@@ -9,7 +9,7 @@
         />
       </a>
       <h1>BYU-I Student Guide</h1>
-      <div id="bruh">
+      <div id="top-bar">
         <nav>
           <router-link to="/pages/academics">Academics</router-link>
           <router-link to="/pages/Activities">Activities</router-link>
@@ -21,7 +21,7 @@
     </header>
 
     <main>
-      <div id="confused">
+      <div id="box1">
         <section id="opening">
           <p>
             Welcome to the BYU-I Student Guide! This is not an official BYU-I
@@ -34,7 +34,7 @@
       <div id="mainboi">
         <section id="aca">
           <img
-            class="sahowimg"
+            class="shadowimg"
             src="./images/guy devo notes edit.jpg"
             alt="AcademicsIMG"
           />
@@ -42,7 +42,7 @@
         </section>
         <section id="hea">
           <img
-            class="sahowimg"
+            class="shadowimg"
             src="./images/run and not be weary 3 edited.jpg"
             alt="HealthIMG"
           />
@@ -57,7 +57,7 @@
           <a class="Activites" href="./pages/activities.vue">Activites</a>
         </section>
         <section id="fin">
-          <img class="sahowimg" src="./images/Pertty.jpg" alt="FinancialIMG" />
+          <img class="shadowimg" src="./images/Pertty.jpg" alt="FinancialIMG" />
           <a class="Finanical" href="./pages/fin.vue">Finanical</a>
         </section>
         <!-- <section id="tips">
