@@ -11,11 +11,14 @@
       <h1>BYU-I Student Guide</h1>
       <div id="top-bar">
         <nav>
-          <router-link to="/pages/academics">Academics</router-link>
-          <router-link to="/pages/Activities">Activities</router-link>
+          <router-link to="./pages/academicsPage" tag="button"
+            >Academics</router-link
+          >
+          <router-link to="/pages/activitiesPage">Activities</router-link>
           <router-link to="/pages/health">Health</router-link>
-          <router-link to="/pages/fin">Finacial</router-link>
+          <router-link to="/pages/fin">Financial</router-link>
           <router-link to="/Calendar">Calendar</router-link>
+          <router-link to="./mongo-form-app/EventForm.vue">Form</router-link>
         </nav>
       </div>
     </header>
@@ -38,7 +41,7 @@
             src="./images/guy devo notes edit.jpg"
             alt="AcademicsIMG"
           />
-          <a class="Academics" href="./pages/academics.vue">Academics</a>
+          <a class="Academics" href="./pages/academicsPage">Academics</a>
         </section>
         <section id="hea">
           <img
@@ -50,51 +53,21 @@
         </section>
         <section id="act">
           <!-- <img
-            class="sahowimg"
+            class="shadowimg"
             src="@/components/images/going to church.JPG"
-            alt="ActivitesIMG"
+            alt="ActivitiesIMG"
           /> -->
-          <a class="Activites" href="./pages/activities.vue">Activites</a>
+          <a class="Activities" href="./pages/activities.vue">Activities</a>
         </section>
         <section id="fin">
           <img class="shadowimg" src="./images/Pertty.jpg" alt="FinancialIMG" />
-          <a class="Finanical" href="./pages/fin.vue">Finanical</a>
+          <a class="Financial" href="./pages/fin.vue">Financial</a>
         </section>
-        <!-- <section id="tips">
-          <p>
-            Click the button below for a few fun tips to get through college!
-          </p>
-          <a class="Tips" href="./tips.html">Tips</a>
-        </section> -->
       </div>
-
-      <!-- <section id="search">
-        <p>If none of these categories are what you're looking for...</p>
-        <img id="arrow" src="./images/fliparrow.png" alt="arrow" />
-        <img id="bar" src="./images/searchabr.png" alt="searchbar" />
-      </section> -->
-
-      <!-- <div id="proph">
-        <section id="yote">
-          <div id="huh">
-            <img src="./images/Eyeering.jpg" alt="Elder Eyring" />
-            <a
-              class="talk"
-              href="https://www.byui.edu/foundational-addresses/a-steady-upward-course"
-              >Complete Talk</a
-            >
-          </div>
-          <div id="stuff">
-            <h2>A Steady Upward Course</h2>
-            <p>"I’ll make you a prophecy..."</p>
-            <p>-Elder Henry B. Eyring</p>
-          </div>
-        </section>
-      </div> -->
     </main>
 
     <footer>
-      <p>Student Guide &copy; 2022 - Jessica Clark</p>
+      <p>Student Guide &copy; 2022-2025 - Jessica Clark</p>
       <p>Images courtesy of Lexie Stout and Jessica Clark</p>
       <p><a href="./site-plan.html">Site Plan</a></p>
       <p><a href="./pages/contactus.vue">Contact Us</a></p>

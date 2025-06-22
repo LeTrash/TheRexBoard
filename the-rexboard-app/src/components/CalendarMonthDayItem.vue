@@ -10,6 +10,15 @@
   >
     <span>{{ label }}</span>
   </li>
+
+  <div
+    v-for="event in day.events"
+    :key="event.title"
+    class="event"
+    @click="$emit('eventClick', event)"
+  >
+    {{ event.title }}
+  </div>
 </template>
 
 <script>

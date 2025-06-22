@@ -30,9 +30,16 @@ dayjs().format() -->
         :key="day.date"
         :day="day"
         :is-today="day.date === today"
+        @eventClick="openEventModal"
       />
     </ol>
   </div>
+
+  <EventModal
+    :event="selectedEvent"
+    :visible="showModal"
+    @close="closeEventModal"
+  />
 </template>
 
 <script>
@@ -43,6 +50,7 @@ import CalendarMonthDayItem from "./CalendarMonthDayItem.vue";
 import CalendarDateIndicator from "./CalendarDateIndicator.vue";
 import CalendarDateSelector from "./CalendarDateSelector.vue";
 import CalendarWeekdays from "./CalendarWeekdays.vue";
+import EventModal from "./EventModal.vue";
 
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
@@ -55,12 +63,24 @@ export default {
     CalendarDateIndicator,
     CalendarDateSelector,
     CalendarWeekdays,
+    EventModal,
   },
 
   data() {
     return {
       selectedDate: dayjs(),
+      events: [], //fetched from MongoDB
+      selectedEvent: null,
+      showModal: false,
     };
+  },
+
+  mounted() {
+    fetch("/api/events") //adjust endpoint
+      .then((res) => res.json())
+      .then((data) => {
+        this.events = data;
+      });
   },
 
   computed: {
@@ -87,14 +107,18 @@ export default {
     numberOfDaysInMonth() {
       return dayjs(this.selectedDate).daysInMonth();
     },
-
+    // date:dayjs(`${this.year}-${this.month}-${index + 1}`).format(
+    // "YYYY-MM-DD"
+    //         )
     currentMonthDays() {
       return [...Array(this.numberOfDaysInMonth)].map((day, index) => {
+        const date = dayjs(`${this.year}-${this.month}-${index + 1}`).format(
+          "YYYY-MM-DD"
+        );
         return {
-          date: dayjs(`${this.year}-${this.month}-${index + 1}`).format(
-            "YYYY-MM-DD"
-          ),
+          date,
           isCurrentMonth: true,
+          events: this.events.filter((event) => event.date === date),
         };
       });
     },
@@ -127,6 +151,7 @@ export default {
               }`
             ).format("YYYY-MM-DD"),
             isCurrentMonth: false,
+            events: this.events.filter((event) => event.date === date),
           };
         }
       );
@@ -149,6 +174,7 @@ export default {
             `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
           ).format("YYYY-MM-DD"),
           isCurrentMonth: false,
+          events: this.events.filter((event) => event.date === date),
         };
       });
     },
@@ -161,6 +187,16 @@ export default {
 
     selectDate(newSelectedDate) {
       this.selectedDate = newSelectedDate;
+    },
+
+    openEventModal(event) {
+      this.selectedEvent = event;
+      this.showModal = true;
+    },
+
+    closeEventModal() {
+      this.showModal = false;
+      this.selectedEvent = null;
     },
   },
 };
