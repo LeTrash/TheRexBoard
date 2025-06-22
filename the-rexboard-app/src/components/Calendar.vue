@@ -76,11 +76,17 @@ export default {
   },
 
   mounted() {
-    fetch("/api/events") //adjust endpoint
-      .then((res) => res.json())
-      .then((data) => {
-        this.events = data;
-      });
+    // fetch("/api/events") //adjust endpoint
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     this.events = data;
+    //   });
+    (data) => {
+      this.events = data.map((event) => ({
+        ...event,
+        data: new Date(event.eventDate).toISOString().split("T")[0],
+      }));
+    };
   },
 
   computed: {
