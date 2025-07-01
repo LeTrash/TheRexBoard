@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    <HomePage />
+    <AppHeader />
+    <router-view />
   </div>
 </template>
 
 <script>
-// import CalendarDynamic from "./components/Calendar.vue";
-import HomePage from "./components/HomePage.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
   name: "App",
-
   components: {
-    HomePage,
+    AppHeader,
   },
 };
 </script>
@@ -107,7 +106,7 @@ header {
 }
 
 .logo {
-  width: 400px;
+  width: 100px;
   height: 100%;
   background-color: transparent;
 }
@@ -125,7 +124,7 @@ header {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin-left: 32%;
+  margin-left: 10%;
 }
 
 #top-bar nav a:hover {

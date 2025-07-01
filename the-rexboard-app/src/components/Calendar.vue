@@ -33,13 +33,13 @@ dayjs().format() -->
         @eventClick="openEventModal"
       />
     </ol>
+    <!-- Calendar Modals-->
+    <EventModal
+      :event="selectedEvent"
+      :visible="showModal"
+      @close="closeEventModal"
+    />
   </div>
-
-  <EventModal
-    :event="selectedEvent"
-    :visible="showModal"
-    @close="closeEventModal"
-  />
 </template>
 
 <script>
@@ -149,13 +149,14 @@ export default {
         .date();
 
       return [...Array(visibleNumberOfDaysFromPreviousMonth)].map(
-        (day, index) => {
+        (_, index) => {
+          const date = dayjs(
+            `${previousMonth.year()}-${previousMonth.month() + 1}-${
+              previousMonthLastMondayDayOfMonth + index
+            }`
+          ).format("YYYY-MM-DD");
           return {
-            date: dayjs(
-              `${previousMonth.year()}-${previousMonth.month() + 1}-${
-                previousMonthLastMondayDayOfMonth + index
-              }`
-            ).format("YYYY-MM-DD"),
+            date,
             isCurrentMonth: false,
             events: this.events.filter((event) => event.date === date),
           };
@@ -174,11 +175,12 @@ export default {
         ? 7 - lastDayOfTheMonthWeekday
         : lastDayOfTheMonthWeekday;
 
-      return [...Array(visibleNumberOfDaysFromNextMonth)].map((day, index) => {
+      return [...Array(visibleNumberOfDaysFromNextMonth)].map((_, index) => {
+        const date = dayjs(
+          `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
+        ).format("YYYY-MM-DD");
         return {
-          date: dayjs(
-            `${nextMonth.year()}-${nextMonth.month() + 1}-${index + 1}`
-          ).format("YYYY-MM-DD"),
+          date,
           isCurrentMonth: false,
           events: this.events.filter((event) => event.date === date),
         };

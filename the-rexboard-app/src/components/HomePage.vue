@@ -1,26 +1,7 @@
 <template>
   <div class="contentt">
     <header>
-      <a id="logo_link" href="./images/Ryka_StudentGuide_logo.png">
-        <img
-          class="logo"
-          src="./images/Ryka_StudentGuide_logo.png"
-          alt="Student Guide Logo"
-        />
-      </a>
       <h1>BYU-I Student Guide</h1>
-      <div id="top-bar">
-        <nav>
-          <router-link to="./pages/academicsPage" tag="button"
-            >Academics</router-link
-          >
-          <router-link to="/pages/activitiesPage">Activities</router-link>
-          <router-link to="/pages/health">Health</router-link>
-          <router-link to="/pages/fin">Financial</router-link>
-          <router-link to="/Calendar">Calendar</router-link>
-          <router-link to="./mongo-form-app/EventForm.vue">Form</router-link>
-        </nav>
-      </div>
     </header>
 
     <main>
@@ -52,11 +33,11 @@
           <a class="Health" href="./pages/health.vue">Health</a>
         </section>
         <section id="act">
-          <!-- <img
+          <img
             class="shadowimg"
-            src="@/components/images/going to church.JPG"
+            src="./images/church.JPG"
             alt="ActivitiesIMG"
-          /> -->
+          />
           <a class="Activities" href="./pages/activities.vue">Activities</a>
         </section>
         <section id="fin">
@@ -70,7 +51,7 @@
       <p>Student Guide &copy; 2022-2025 - Jessica Clark</p>
       <p>Images courtesy of Lexie Stout and Jessica Clark</p>
       <p><a href="./site-plan.html">Site Plan</a></p>
-      <p><a href="./pages/contactus.vue">Contact Us</a></p>
+      <p><router-link to="/contact">Contact Us!</router-link></p>
       <div class="social">
         <a href="https://byui.edu" target="_blank">
           <img src="./images/BYU-Ilogo.jpg" alt="BYU-I icon" />
@@ -88,7 +69,3 @@ export default {
   name: "HomePage",
 };
 </script>
-
-<!-- <style scoped>
-@import "./assets/stylehome.css";
-</style> -->

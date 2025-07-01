@@ -1,23 +1,25 @@
 <!-- CalendarMonthDayItem.vue-->
 
 <template>
-  <li
-    class="calendar-day"
-    :class="{
-      'calendar-day--not-current': !day.isCurrentMonth,
-      'calendar-day--today': isToday,
-    }"
-  >
-    <span>{{ label }}</span>
-  </li>
+  <div>
+    <li
+      class="calendar-day"
+      :class="{
+        'calendar-day--not-current': !day.isCurrentMonth,
+        'calendar-day--today': isToday,
+      }"
+    >
+      <span>{{ label }}</span>
+    </li>
 
-  <div
-    v-for="event in day.events"
-    :key="event.title"
-    class="event"
-    @click="$emit('eventClick', event)"
-  >
-    {{ event.title }}
+    <div
+      v-for="event in day.events"
+      :key="event.title"
+      class="event"
+      @click="$emit('eventClick', event)"
+    >
+      {{ event.title }}
+    </div>
   </div>
 </template>
 
