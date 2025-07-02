@@ -14,7 +14,7 @@
 
     <div
       v-for="event in day.events"
-      :key="event.title"
+      :key="event._id.$oid"
       class="event"
       @click="$emit('eventClick', event)"
     >
@@ -35,6 +35,10 @@ export default {
       required: true,
     },
     isCurrentMonth: {
+      type: Boolean,
+      default: false,
+    },
+    isToday: {
       type: Boolean,
       default: false,
     },
@@ -80,5 +84,14 @@ export default {
   color: #fff;
   border-radius: 9999px;
   background-color: var(--grey-800);
+}
+
+.event {
+  background-color: var(--grey-300);
+  margin-top: 4px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
 }
 </style>

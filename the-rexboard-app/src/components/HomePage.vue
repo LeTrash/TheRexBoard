@@ -35,7 +35,7 @@
         <section id="act">
           <img
             class="shadowimg"
-            src="./images/church.JPG"
+            src="the-rexboard-app/src/components/images/gtchurch.JPG"
             alt="ActivitiesIMG"
           />
           <a class="Activities" href="./pages/activities.vue">Activities</a>
@@ -67,5 +67,16 @@
 <script>
 export default {
   name: "HomePage",
+
+  mounted() {
+    fetch("http://localhost:5000/api/events")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched events:", data);
+      })
+      .catch((error) => {
+        console.error("Fetch or CORS error:", error);
+      });
+  },
 };
 </script>
