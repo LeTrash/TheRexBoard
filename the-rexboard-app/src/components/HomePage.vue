@@ -33,11 +33,11 @@
           <a class="Health" href="./pages/health.vue">Health</a>
         </section>
         <section id="act">
-          <img
+          <!-- <img
             class="shadowimg"
             src="the-rexboard-app/src/components/images/gtchurch.JPG"
             alt="ActivitiesIMG"
-          />
+          /> -->
           <a class="Activities" href="./pages/activities.vue">Activities</a>
         </section>
         <section id="fin">

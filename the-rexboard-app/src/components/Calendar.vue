@@ -76,7 +76,10 @@ export default {
   },
 
   mounted() {
-    fetch("/api/events")
+    fetch("/api/events", {
+      credentials: "include",
+      headers: { "Content-Type": "text/plain" },
+    })
       .then((res) => res.json())
       .then((data) => {
         this.events = data.map((event) => ({
