@@ -64,7 +64,7 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   name: "HomePage",
 
@@ -79,4 +79,4 @@ export default {
       });
   },
 };
-</script>
+</script> -->

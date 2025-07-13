@@ -13,6 +13,7 @@ import Activities from "./components/pages/activitiesPage.vue";
 import Fin from "./components/pages/finPage.vue";
 import Health from "./components/pages/healthPage.vue";
 import Contact from "./components/pages/contactusPage.vue";
+import form from "./components/EventForm.vue";
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
       path: "/contact",
       name: "contact",
       component: Contact,
+    },
+    {
+      path: "/form",
+      name: form,
+      component: form,
     },
   ],
 });

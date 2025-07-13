@@ -69,14 +69,14 @@ export default {
   data() {
     return {
       selectedDate: dayjs(),
-      events: [], //fetched from MongoDB
+      eventInfo: [], //fetched from MongoDB
       selectedEvent: null,
       showModal: false,
     };
   },
 
   mounted() {
-    fetch("/api/events", {
+    fetch("/api/eventInfo", {
       credentials: "include",
       headers: { "Content-Type": "text/plain" },
     })

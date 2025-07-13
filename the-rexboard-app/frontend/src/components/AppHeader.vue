@@ -28,6 +28,7 @@
           <li>
             <router-link to="/financial">Financial</router-link>
           </li>
+          <li><router-link to="/form">form</router-link></li>
         </ul>
       </nav>
     </div>

@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 
 const EventSchema = new mongoose.Schema({
   title: String,
+  email: String,
   body: String,
   business: String,
-  eventDate: Date,
+  eventDate: String,
+  isFree: Boolean,
+  priceRange: String,
   location: {
     street: String,
     city: String,
@@ -12,7 +15,7 @@ const EventSchema = new mongoose.Schema({
     zip: Number,
   },
   category: [String],
-  free: Boolean,
 });
 
-module.exports = mongoose.model("Event", EventSchema);
+const Event = mongoose.model("Event", EventSchema, "eventInfo");
+module.exports = Event;
