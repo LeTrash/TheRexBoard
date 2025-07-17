@@ -80,7 +80,8 @@ export default {
   data() {
     return {
       selectedDate: dayjs(),
-      eventInfo: [], //fetched from MongoDB
+      eventInfo: [], //fetched from MongoDB,
+      events: [],
       selectedEvent: null,
       showModal: false,
       selectedTags: [],
@@ -102,15 +103,15 @@ export default {
       })
       .catch((error) => {
         console.error("Error fetching events:", error);
+        //Extract unique tags
+        const tags = new Set();
+        this.events.forEach((event) => {
+          if (Array.isArray(event.tags)) {
+            event.tags.forEach((tag) => tags.add(tag));
+          }
+        });
+        this.availableTags = Array.from(tags);
       });
-    //Extract unique tags
-    const tags = new Set();
-    this.events.forEach((event) => {
-      if (Array.isArray(event.tags)) {
-        event.tags.forEach((tag) => tags.add(tag));
-      }
-    });
-    this.availableTags = Array.from(tags);
   },
 
   computed: {
@@ -255,6 +256,7 @@ export default {
   background-color: var(--grey-200);
   border: solid 1px var(--grey-300);
   flex: 1;
+  margin: 15px;
 }
 
 .day-of-week {
