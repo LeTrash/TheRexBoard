@@ -7,6 +7,17 @@ dayjs().format() -->
 <template>
   <!-- Parent container for the calendar month-->
   <div class="calendar-month">
+    <!-- Sidebar for Category Filters-->
+    <aside class="calendar-sidebar">
+      <h3>Filter by Category</h3>
+      <div v-for="tag in availableTags" :key="tag">
+        <label>
+          <input type="checkbox" :value="tag" v-model="selectedTags" />
+          {{ tag }}
+        </label>
+      </div>
+    </aside>
+
     <!-- The Calendar header-->
     <div class="calendar-month-header">
       <CalendarDateIndicator
@@ -72,6 +83,8 @@ export default {
       eventInfo: [], //fetched from MongoDB
       selectedEvent: null,
       showModal: false,
+      selectedTags: [],
+      availableTags: [], //populated from events
     };
   },
 
@@ -90,6 +103,14 @@ export default {
       .catch((error) => {
         console.error("Error fetching events:", error);
       });
+    //Extract unique tags
+    const tags = new Set();
+    this.events.forEach((event) => {
+      if (Array.isArray(event.tags)) {
+        event.tags.forEach((tag) => tags.add(tag));
+      }
+    });
+    this.availableTags = Array.from(tags);
   },
 
   computed: {
@@ -127,7 +148,12 @@ export default {
         return {
           date,
           isCurrentMonth: true,
-          events: this.events.filter((event) => event.date === date),
+          events: this.events.filter(
+            (event) =>
+              event.date === date &&
+              (this.selectedTags.length === 0 ||
+                event.tags?.some((tag) => this.selectedTags.includes(tag)))
+          ),
         };
       });
     },
@@ -161,7 +187,12 @@ export default {
           return {
             date,
             isCurrentMonth: false,
-            events: this.events.filter((event) => event.date === date),
+            events: this.events.filter(
+              (event) =>
+                event.date === date &&
+                (this.selectedTags.length === 0 ||
+                  event.tags?.some((tag) => this.selectedTags.includes(tag)))
+            ),
           };
         }
       );
@@ -185,7 +216,12 @@ export default {
         return {
           date,
           isCurrentMonth: false,
-          events: this.events.filter((event) => event.date === date),
+          events: this.events.filter(
+            (event) =>
+              event.date === date &&
+              (this.selectedTags.length === 0 ||
+                event.tags?.some((tag) => this.selectedTags.includes(tag)))
+          ),
         };
       });
     },
@@ -218,6 +254,7 @@ export default {
   position: relative;
   background-color: var(--grey-200);
   border: solid 1px var(--grey-300);
+  flex: 1;
 }
 
 .day-of-week {
@@ -245,5 +282,16 @@ export default {
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
   border-top: solid 1px var(--grey-200);
+}
+
+.calendar-container {
+  display: flex;
+}
+
+.calendar-sidebar {
+  width: 200px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ccc;
 }
 </style>

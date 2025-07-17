@@ -1,5 +1,5 @@
 <template>
-  <div class="contentt">
+  <div class="content">
     <header>
       <h1>BYU-I Student Guide</h1>
     </header>

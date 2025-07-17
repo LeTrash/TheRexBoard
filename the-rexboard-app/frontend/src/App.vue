@@ -23,7 +23,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 #background {
@@ -32,7 +31,9 @@ export default {
 }
 
 main {
-  font-family: news gothic, sans-serif;
+  font-family:
+    news gothic,
+    sans-serif;
   color: #101d42;
 }
 
@@ -44,7 +45,9 @@ body {
   --grey-800: #3e4e63;
   --grid-gap: 1px;
   --day-label-size: 20px;
-  font-family: news gothic, sans-serif;
+  font-family:
+    news gothic,
+    sans-serif;
   background-color: #ffda90;
   font-size: 22px;
   margin: 0;
@@ -75,7 +78,7 @@ main img {
   width: 450px;
 }
 
-.contentt {
+.content {
   max-width: 1600px;
   margin: 0 auto;
   text-align: center;
@@ -86,10 +89,10 @@ header {
   color: #ffda90;
   font-family: "Noto Serif", serif;
   background-color: #101d42;
-  height: 170px;
+  height: 90px;
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #logo_link {
@@ -106,7 +109,7 @@ header {
 }
 
 .logo {
-  width: 100px;
+  width: 150px;
   height: 100%;
   background-color: transparent;
 }
@@ -212,5 +215,75 @@ footer img {
 
 footer a {
   background-color: transparent;
+}
+
+.f1 {
+  padding: 8% 0;
+  display: grid;
+  grid-template-columns: 800px 400px;
+  grid-template-rows: repeat(13, 100px);
+  margin: 2% 2%;
+  column-gap: 5%;
+  justify-items: center;
+}
+
+.f1 a {
+  display: block;
+}
+
+#a1 {
+  grid-row: 1/2;
+}
+
+#a2 {
+  grid-row: 3/4;
+}
+
+#a3 {
+  margin-top: 7%;
+  grid-row: 5/6;
+}
+
+#a4 {
+  margin-top: 5%;
+  grid-row: 7/8;
+}
+
+#a5 {
+  grid-row: 8;
+  grid-column: 2 / end;
+}
+
+#a6 {
+  grid-row: 9;
+  margin-top: 7%;
+}
+
+#a1,
+#a2,
+#a3,
+#a4,
+#a6 {
+  grid-column: 1;
+  margin-top: 10%;
+}
+
+.img1,
+.img2,
+.img3 {
+  grid-column: 2 / end;
+}
+
+.img1 {
+  grid-row: 1;
+}
+
+.img2 {
+  grid-row: 11;
+}
+
+.img3 {
+  margin-top: 10%;
+  grid-row: 6;
 }
 </style>

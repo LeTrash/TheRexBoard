@@ -11,14 +11,15 @@
       <nav>
         <ul>
           <li>
-            <router-link to="/">HomePage</router-link>
-          </li>
-          <li>
-            <router-link to="/academics">Academics</router-link>
+            <router-link to="/">Home</router-link>
           </li>
           <li>
             <router-link to="/calendar">Calendar</router-link>
           </li>
+          <li>
+            <router-link to="/academics">Academics</router-link>
+          </li>
+
           <li>
             <router-link to="/activities">Activities</router-link>
           </li>
