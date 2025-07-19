@@ -15,6 +15,12 @@ const app = express();
 // };
 
 // MiddleWare
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+
 app.use(
   cors({
     origin: "http://localhost:8080", //Frontend URL
@@ -45,9 +51,17 @@ const formSchema = new mongoose.Schema({
   title: String,
   email: String,
   body: String,
-  date: String,
+  business: String,
+  eventDate: Date, //date type in MongoDB
   isFree: Boolean,
   priceRange: String,
+  location: {
+    street: String,
+    city: String,
+    state: String,
+    zip: Number,
+  },
+  category: [String],
 });
 
 const EventInfo = mongoose.model("eventInfo", formSchema, "eventInfo");
