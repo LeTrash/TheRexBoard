@@ -94,11 +94,12 @@ export default {
   },
   methods: {
     async submitForm() {
-      this.form.eventDate = new Date(FormData.eventDate);
+      this.form.eventDate = new Date(this.form.date);
 
       try {
-        const response = await fetch("http://localhost:5000/submit", {
+        const response = await fetch("/submit", {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -117,6 +118,3 @@ export default {
   },
 };
 </script>
-
-<!-- <style scoped></style>-->
-<!-- new URLSearchParams(this.form) -->

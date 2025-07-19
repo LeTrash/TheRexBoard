@@ -7,31 +7,12 @@ const cors = require("cors");
 
 const app = express();
 
-//CORS configuration
-// const corsOptions = {
-//   origin: "http://localhost:8080", //my vue frontend
-//   credentials: true,
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
-
-// MiddleWare
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-
 app.use(
   cors({
-    origin: "http://localhost:8080", //Frontend URL
+    origin: "http://localhost:5000",
     credentials: true,
   })
 );
-
-// app.use(cors(corsOptions));
-// // preflight requests
-// app.options("*", cors(corsOptions));
 
 //body parsers
 app.use(express.json());
@@ -64,6 +45,16 @@ const formSchema = new mongoose.Schema({
 
 const EventInfo = mongoose.model("eventInfo", formSchema, "eventInfo");
 
+// GET: Retrieve all event data
+app.get("/api/eventInfo", async (req, res) => {
+  try {
+    const events = await EventInfo.find();
+    res.json(events);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch events", details: err });
+  }
+});
+
 //POST: Submit form data
 app.post("/submit", (req, res) => {
   const isFree = req.body.isFree === "0"; // 0 = true
@@ -83,16 +74,6 @@ app.post("/submit", (req, res) => {
     .save()
     .then(() => res.status(201).send("Data saved to MongoDB!"))
     .catch((err) => res.status(400).send("Error saving data: " + err));
-});
-
-// GET: Retrieve all event data
-app.get("/api/eventInfo", async (req, res) => {
-  try {
-    const events = await EventInfo.find();
-    res.json(events);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch events", details: err });
-  }
 });
 
 //Start server
