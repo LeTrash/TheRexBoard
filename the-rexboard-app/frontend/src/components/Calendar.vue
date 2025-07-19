@@ -54,6 +54,7 @@ dayjs().format() -->
 </template>
 
 <script>
+// import axios from "axios";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
@@ -90,7 +91,7 @@ export default {
   },
 
   mounted() {
-    fetch("http://localhost:5000/api/eventInfo", {
+    fetch("/api/eventInfo", {
       credentials: "include",
       headers: { "Content-Type": "application/json" }, //text/plain?
     })

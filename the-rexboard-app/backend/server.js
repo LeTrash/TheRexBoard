@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = require("path");
+
+// const path = require("path");
 
 const app = express();
 
@@ -39,10 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 //MongoDB connection
 console.log("Connecting to MongoDB with URI:", process.env.MONGO_URI);
 mongoose
-  .connect(process.env.MONGO_URI, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -74,9 +72,11 @@ app.post("/submit", (req, res) => {
     title: req.body.title,
     email: req.body.email,
     body: req.body.body,
-    date: req.body.date,
+    eventdate: req.body.eventdate,
     isFree: isFree,
     priceRange: req.body.priceRange || "", //Only if isFree = False
+    location: req.body.location,
+    category: req.body.category,
   });
 
   newForm
