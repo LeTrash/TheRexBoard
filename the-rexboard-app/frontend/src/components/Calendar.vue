@@ -90,7 +90,7 @@ export default {
   },
 
   mounted() {
-    fetch("/api/eventInfo", {
+    fetch("http://localhost:5000/api/eventInfo", {
       credentials: "include",
       headers: { "Content-Type": "application/json" }, //text/plain?
     })

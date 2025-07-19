@@ -56,7 +56,7 @@ export default new Router({
     },
     {
       path: "/form",
-      name: form,
+      name: "form",
       component: form,
     },
   ],

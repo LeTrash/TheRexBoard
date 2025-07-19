@@ -6,13 +6,27 @@ const path = require("path");
 
 const app = express();
 
-//MiddleWare
+//CORS configuration
+// const corsOptions = {
+//   origin: "http://localhost:8080", //my vue frontend
+//   credentials: true,
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
+
+// MiddleWare
 app.use(
   cors({
     origin: "http://localhost:8080", //Frontend URL
     credentials: true,
   })
 );
+
+// app.use(cors(corsOptions));
+// // preflight requests
+// app.options("*", cors(corsOptions));
+
+//body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,8 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 console.log("Connecting to MongoDB with URI:", process.env.MONGO_URI);
 mongoose
   .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
@@ -66,10 +80,6 @@ app.get("/api/eventInfo", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch events", details: err });
   }
 });
-
-//Routes
-const eventsRouter = require("./routes/events");
-// app.use("/api/eventInfo", eventsRouter);
 
 //Start server
 const PORT = process.env.PORT || 5000;
