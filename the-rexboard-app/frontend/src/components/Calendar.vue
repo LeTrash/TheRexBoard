@@ -92,7 +92,7 @@ export default {
   mounted() {
     fetch("/api/eventInfo", {
       credentials: "include",
-      headers: { "Content-Type": "text/plain" },
+      headers: { "Content-Type": "application/json" }, //text/plain?
     })
       .then((res) => res.json())
       .then((data) => {

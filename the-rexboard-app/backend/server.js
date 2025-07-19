@@ -9,7 +9,7 @@ const app = express();
 //MiddleWare
 app.use(
   cors({
-    origin: "http://localhost:8080/", //Frontend URL
+    origin: "http://localhost:8080", //Frontend URL
     credentials: true,
   })
 );
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //MongoDB connection
-console.log("Connecting to MongoDB with URI:", process.env.mongo_URI);
+console.log("Connecting to MongoDB with URI:", process.env.MONGO_URI);
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -69,7 +69,7 @@ app.get("/api/eventInfo", async (req, res) => {
 
 //Routes
 const eventsRouter = require("./routes/events");
-app.use("/api/eventInfo", eventsRouter);
+// app.use("/api/eventInfo", eventsRouter);
 
 //Start server
 const PORT = process.env.PORT || 5000;
