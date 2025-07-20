@@ -67,7 +67,7 @@ export default {
         title: "",
 
         body: "",
-        eventdate: "",
+        eventDate: "",
         isFree: null, // 0 = Free, 1 = Priced
         priceRange: "", //Only use if Priced
         business: "",
