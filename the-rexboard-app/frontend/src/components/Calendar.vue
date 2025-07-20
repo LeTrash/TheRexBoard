@@ -10,10 +10,15 @@ dayjs().format() -->
     <!-- Sidebar for Category Filters-->
     <aside class="calendar-sidebar">
       <h3>Filter by Category</h3>
-      <div v-for="tag in availableTags" :key="tag">
+      <div v-for="category in availableCategories" :key="category">
         <label>
-          <input type="checkbox" :value="tag" v-model="selectedTags" />
-          {{ tag }}
+          <input
+            type="checkbox"
+            :value="category"
+            v-model="selectedCategories"
+            @change="filterEvents"
+          />
+          {{ category }}
         </label>
       </div>
     </aside>
@@ -54,7 +59,7 @@ dayjs().format() -->
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
@@ -81,37 +86,37 @@ export default {
   data() {
     return {
       selectedDate: dayjs(),
-      eventInfo: [], //fetched from MongoDB,
       events: [],
+      filteredEvents: [],
       selectedEvent: null,
       showModal: false,
-      selectedTags: [],
-      availableTags: [], //populated from events
+      selectedCategories: [],
+      availableCategories: [
+        "CASUAL",
+        "INDOOR",
+        "OUTDOOR",
+        "HEALTH",
+        "FOOD",
+        "GAMES",
+        "PROFESSIONAL",
+        "MARKET",
+        "OTHER",
+      ], //populated from events
     };
   },
 
   mounted() {
-    fetch("/api/eventInfo", {
-      credentials: "include",
-      headers: { "Content-Type": "application/json" }, //text/plain?
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        this.events = data.map((event) => ({
-          ...event,
-          date: new Date(event.eventDate).toISOString().split("T")[0],
-        }));
+    axios
+      .get("/api/eventInfo", {
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" }, //text/plain?
       })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-        //Extract unique tags
-        const tags = new Set();
-        this.events.forEach((event) => {
-          if (Array.isArray(event.tags)) {
-            event.tags.forEach((tag) => tags.add(tag));
-          }
-        });
-        this.availableTags = Array.from(tags);
+      .then((res) => {
+        this.events = res.data.map((eventInfo) => ({
+          ...eventInfo,
+          date: new Date(eventInfo.eventDate).toISOString().split("T")[0],
+        }));
+        this.filteredEvents = this.events;
       });
   },
 
@@ -150,11 +155,13 @@ export default {
         return {
           date,
           isCurrentMonth: true,
-          events: this.events.filter(
-            (event) =>
-              event.date === date &&
-              (this.selectedTags.length === 0 ||
-                event.tags?.some((tag) => this.selectedTags.includes(tag)))
+          events: this.filteredEvents.filter(
+            (eventInfo) =>
+              eventInfo.date === date &&
+              (this.selectedCategories.length === 0 ||
+                eventInfo.category?.some((cat) =>
+                  this.selectedCategories.includes(cat)
+                ))
           ),
         };
       });
@@ -189,11 +196,13 @@ export default {
           return {
             date,
             isCurrentMonth: false,
-            events: this.events.filter(
-              (event) =>
-                event.date === date &&
-                (this.selectedTags.length === 0 ||
-                  event.tags?.some((tag) => this.selectedTags.includes(tag)))
+            events: this.filteredEvents.filter(
+              (eventInfo) =>
+                eventInfo.date === date &&
+                (this.selectedCategories.length === 0 ||
+                  eventInfo.category?.some((cat) =>
+                    this.selectedCategories.includes(cat)
+                  ))
             ),
           };
         }
@@ -218,11 +227,13 @@ export default {
         return {
           date,
           isCurrentMonth: false,
-          events: this.events.filter(
-            (event) =>
-              event.date === date &&
-              (this.selectedTags.length === 0 ||
-                event.tags?.some((tag) => this.selectedTags.includes(tag)))
+          events: this.filteredEvents.filter(
+            (eventInfo) =>
+              eventInfo.date === date &&
+              (this.selectedCategories.length === 0 ||
+                eventInfo.category?.some((cat) =>
+                  this.selectedCategories.includes(cat)
+                ))
           ),
         };
       });
@@ -246,6 +257,16 @@ export default {
     closeEventModal() {
       this.showModal = false;
       this.selectedEvent = null;
+    },
+
+    filterEvents() {
+      if (this.selectedCategories.length === 0) {
+        this.filteredEvents = this.events;
+      } else {
+        this.filteredEvents = this.events.filter((event) =>
+          event.category.some((cat) => this.selectedCategories.includes(cat))
+        );
+      }
     },
   },
 };

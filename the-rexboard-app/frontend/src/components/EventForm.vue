@@ -3,9 +3,6 @@
     <label>Event Title: </label>
     <input v-model="form.title" type="text" required />
 
-    <label>Email: </label>
-    <input v-model="form.email" type="email" required />
-
     <label>Details: (Please include the event time) </label>
     <textarea v-model="form.body" required></textarea>
 
@@ -61,16 +58,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       form: {
         title: "",
-        email: "",
+
         body: "",
         eventdate: "",
         isFree: null, // 0 = Free, 1 = Priced
         priceRange: "", //Only use if Priced
+        business: "",
         location: {
           street: "",
           city: "",
@@ -97,22 +97,21 @@ export default {
       this.form.eventDate = new Date(this.form.date);
 
       try {
-        const response = await fetch("/submit", {
-          method: "POST",
-          credentials: "include",
+        const response = await axios.post("/submit", this.form, {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(this.form),
         });
 
-        if (response.ok) {
+        if (response.status === 200 || response.status === 201) {
           alert("Form submitted successfully!");
         } else {
           alert("Failed to submit form.");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
+        alert("An error occurred while submitting the form");
       }
     },
   },
